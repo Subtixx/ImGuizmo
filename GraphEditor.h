@@ -34,7 +34,7 @@
 namespace GraphEditor {
 
 typedef size_t NodeIndex;
-typedef size_t SlotIndex;
+typedef long int SlotIndex;
 typedef size_t LinkIndex;
 typedef size_t TemplateIndex;
 
@@ -120,24 +120,24 @@ struct Delegate
 
     virtual void SelectNode(NodeIndex nodeIndex, bool selected) = 0;
     virtual void MoveSelectedNodes(const ImVec2 delta) = 0;
-    
+
     virtual void AddLink(NodeIndex inputNodeIndex, SlotIndex inputSlotIndex, NodeIndex outputNodeIndex, SlotIndex outputSlotIndex) = 0;
     virtual void DelLink(LinkIndex linkIndex) = 0;
-    
+
     // user is responsible for clipping
     virtual void CustomDraw(ImDrawList* drawList, ImRect rectangle, NodeIndex nodeIndex) = 0;
-    
+
     // use mouse position to open context menu
     // if nodeIndex != -1, right click happens on the specified node
     virtual void RightClick(NodeIndex nodeIndex, SlotIndex slotIndexInput, SlotIndex slotIndexOutput) = 0;
 
-    virtual const size_t GetTemplateCount() = 0;
+    virtual size_t GetTemplateCount() = 0;
     virtual const Template GetTemplate(TemplateIndex index) = 0;
 
-    virtual const size_t GetNodeCount() = 0;
+    virtual size_t GetNodeCount() = 0;
     virtual const Node GetNode(NodeIndex index) = 0;
-    
-    virtual const size_t GetLinkCount() = 0;
+
+    virtual size_t GetLinkCount() = 0;
     virtual const Link GetLink(LinkIndex index) = 0;
 
     virtual ~Delegate() = default;
